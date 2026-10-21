@@ -1,0 +1,88 @@
+schema: '2.0'
+stages:
+  split:
+    cmd: python src/data/split_batches.py
+    deps:
+    - path: data/raw/customer_booking.csv
+      hash: md5
+      md5: b2f94441043741480b6e3f8b28d1bb41
+      size: 3146446
+    - path: src/data/split_batches.py
+      hash: md5
+      md5: b0ef0764277b2b9a7e3c7f2a49552c52
+      size: 2027
+    params:
+      params.yaml:
+        split:
+          seed: 42
+          initial_share: 0.6
+          n_batches: 4
+          source: data/raw/customer_booking.csv
+          encoding: latin-1
+    outs:
+    - path: data/incoming
+      hash: md5
+      md5: 90e1d99aabd780d42486bbe5bcbeb030.dir
+      size: 1561775
+      nfiles: 8
+    - path: data/interim/initial.csv
+      hash: md5
+      md5: 245dfb559cf497ff313fdd522c0bcf3b
+      size: 2102843
+  validate:
+    cmd: python src/data/validate.py
+    deps:
+    - path: data/incoming
+      hash: md5
+      md5: 90e1d99aabd780d42486bbe5bcbeb030.dir
+      size: 1561775
+      nfiles: 8
+    - path: data/interim/initial.csv
+      hash: md5
+      md5: 245dfb559cf497ff313fdd522c0bcf3b
+      size: 2102843
+    - path: src/data/schema.py
+      hash: md5
+      md5: cf3fc3af319e3f3c77a2fdaffb53b86f
+      size: 2227
+    - path: src/data/validate.py
+      hash: md5
+      md5: 4aac5e573892b166d9df5114c5d65d87
+      size: 4718
+    params:
+      params.yaml:
+        quality:
+          purchase_lead_max: 900
+          length_of_stay_flag: 365
+          new_route_share_max: 0.05
+          positive_share_tolerance: 0.33
+    outs:
+    - path: reports/quality/quality_report.json
+      hash: md5
+      md5: 6d04e8deabcf75d3a1fcc7655373e9ba
+      size: 1756
+    - path: reports/quality/reference.json
+      hash: md5
+      md5: 46bd7e075a43482fa72c91da15c02ada
+      size: 22960
+  eda:
+    cmd: python src/eda/run_eda.py
+    deps:
+    - path: data/interim/initial.csv
+      hash: md5
+      md5: 245dfb559cf497ff313fdd522c0bcf3b
+      size: 2102843
+    - path: src/eda/run_eda.py
+      hash: md5
+      md5: 4f4654f37adbf3f9a625b527baa682ee
+      size: 11085
+    outs:
+    - path: reports/eda_summary.json
+      hash: md5
+      md5: 949081e53d9c993092eefc837e8a57cf
+      size: 4383
+    - path: reports/figures
+      hash: md5
+      md5: 5ddedcc2b51b7dd64039ccc8392d344c.dir
+      size: 294902
+      nfiles: 3

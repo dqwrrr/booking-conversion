@@ -1,0 +1,210 @@
+{
+ "rows_initial": 30000,
+ "rows_dedup": 29705,
+ "positives": 4413,
+ "positive_share": 0.1486,
+ "numeric": {
+  "num_passengers": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 9.0,
+   "iqr_out_share": 0.056,
+   "skew": 2.69,
+   "median_pos": 1.0,
+   "median_neg": 1.0,
+   "mw_p": 5.4161336976617656e-05
+  },
+  "purchase_lead": {
+   "min": 0.0,
+   "median": 51.0,
+   "max": 867.0,
+   "iqr_out_share": 0.0686,
+   "skew": 1.67,
+   "median_pos": 46.0,
+   "median_neg": 52.0,
+   "mw_p": 2.3179450905128157e-09
+  },
+  "length_of_stay": {
+   "min": 0.0,
+   "median": 17.0,
+   "max": 778.0,
+   "iqr_out_share": 0.0776,
+   "skew": 5.53,
+   "median_pos": 6.0,
+   "median_neg": 17.0,
+   "mw_p": 2.2908008943568256e-44
+  },
+  "flight_hour": {
+   "min": 0.0,
+   "median": 9.0,
+   "max": 23.0,
+   "iqr_out_share": 0.0,
+   "skew": 0.38,
+   "median_pos": 9.0,
+   "median_neg": 9.0,
+   "mw_p": 0.0968966945496252
+  },
+  "flight_duration": {
+   "min": 4.67,
+   "median": 7.57,
+   "max": 9.5,
+   "iqr_out_share": 0.0,
+   "skew": -0.36,
+   "median_pos": 6.62,
+   "median_neg": 7.57,
+   "mw_p": 7.727286865931533e-67
+  }
+ },
+ "stay_7_16": 0,
+ "lead_over_365": 500,
+ "oneway_with_stay": 222,
+ "not_set": 47,
+ "routes": 765,
+ "routes_rare": 330,
+ "countries": 93,
+ "countries_rare": 57,
+ "duration_per_route_max": 1,
+ "hypotheses": {
+  "H1_country_not_route": {
+   "conv_au": 0.0503,
+   "conv_other": 0.2036,
+   "or_mh": 0.261,
+   "strata": 58,
+   "rows": 9140,
+   "cmh_p": 1.739324475124548e-66,
+   "conv_flag_in_strata": 0.0505,
+   "conv_rest_in_strata": 0.1706
+  },
+  "H2_extras_trend": {
+   "conv_by_n": {
+    "0": 0.1051,
+    "1": 0.1513,
+    "2": 0.1595,
+    "3": 0.1791
+   },
+   "z": 10.87,
+   "p": 1.6880872083839428e-27
+  },
+  "H3_short_stay": {
+   "conv_short": 0.1883,
+   "conv_long": 0.11,
+   "chi2_p": 5.085484100857375e-80,
+   "or_mh": 1.371,
+   "strata": 19,
+   "rows": 28909,
+   "cmh_p": 2.0999164527038152e-16,
+   "conv_flag_in_strata": 0.1889,
+   "conv_rest_in_strata": 0.1079
+  },
+  "H4_mobile": {
+   "conv_mobile": 0.1117,
+   "conv_internet": 0.1531,
+   "chi2_p": 4.576145475160071e-10,
+   "or_mh": 0.575,
+   "strata": 12,
+   "rows": 27931,
+   "cmh_p": 1.5789256548215433e-18,
+   "conv_flag_in_strata": 0.1121,
+   "conv_rest_in_strata": 0.1498
+  },
+  "H5_last_minute": {
+   "conv_late": 0.1706,
+   "conv_early": 0.1462,
+   "chi2_p": 0.0005461342613650934,
+   "or_mh": 1.113,
+   "strata": 13,
+   "rows": 28170,
+   "cmh_p": 0.059802945275994494,
+   "conv_flag_in_strata": 0.1689,
+   "conv_rest_in_strata": 0.1451
+  },
+  "day_of_week_p": 0.0590209431864203
+ },
+ "spearman": {
+  "num_passengers": {
+   "num_passengers": 1.0,
+   "purchase_lead": 0.25,
+   "length_of_stay": -0.13,
+   "flight_hour": 0.03,
+   "flight_duration": -0.06
+  },
+  "purchase_lead": {
+   "num_passengers": 0.25,
+   "purchase_lead": 1.0,
+   "length_of_stay": 0.02,
+   "flight_hour": 0.04,
+   "flight_duration": 0.08
+  },
+  "length_of_stay": {
+   "num_passengers": -0.13,
+   "purchase_lead": 0.02,
+   "length_of_stay": 1.0,
+   "flight_hour": -0.05,
+   "flight_duration": 0.23
+  },
+  "flight_hour": {
+   "num_passengers": 0.03,
+   "purchase_lead": 0.04,
+   "length_of_stay": -0.05,
+   "flight_hour": 1.0,
+   "flight_duration": -0.03
+  },
+  "flight_duration": {
+   "num_passengers": -0.06,
+   "purchase_lead": 0.08,
+   "length_of_stay": 0.23,
+   "flight_hour": -0.03,
+   "flight_duration": 1.0
+  }
+ },
+ "cramers_v": {
+  "sales_channel": {
+   "sales_channel": 1.0,
+   "trip_type": 0.03,
+   "flight_day": 0.05,
+   "route": 0.23,
+   "booking_origin": 0.13,
+   "booking_complete": 0.04
+  },
+  "trip_type": {
+   "sales_channel": 0.03,
+   "trip_type": 1.0,
+   "flight_day": 0.02,
+   "route": 0.28,
+   "booking_origin": 0.08,
+   "booking_complete": 0.03
+  },
+  "flight_day": {
+   "sales_channel": 0.05,
+   "trip_type": 0.02,
+   "flight_day": 1.0,
+   "route": 0.17,
+   "booking_origin": 0.06,
+   "booking_complete": 0.02
+  },
+  "route": {
+   "sales_channel": 0.23,
+   "trip_type": 0.28,
+   "flight_day": 0.17,
+   "route": 1.0,
+   "booking_origin": 0.35,
+   "booking_complete": 0.36
+  },
+  "booking_origin": {
+   "sales_channel": 0.13,
+   "trip_type": 0.08,
+   "flight_day": 0.06,
+   "route": 0.35,
+   "booking_origin": 1.0,
+   "booking_complete": 0.31
+  },
+  "booking_complete": {
+   "sales_channel": 0.04,
+   "trip_type": 0.03,
+   "flight_day": 0.02,
+   "route": 0.36,
+   "booking_origin": 0.31,
+   "booking_complete": 1.0
+  }
+ }
+}

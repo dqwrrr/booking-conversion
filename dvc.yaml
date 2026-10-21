@@ -1,0 +1,36 @@
+stages:
+  split:
+    cmd: python src/data/split_batches.py
+    deps:
+      - src/data/split_batches.py
+      - data/raw/customer_booking.csv
+    params:
+      - split
+    outs:
+      - data/interim/initial.csv
+      - data/incoming
+  validate:
+    cmd: python src/data/validate.py
+    deps:
+      - src/data/validate.py
+      - src/data/schema.py
+      - data/interim/initial.csv
+      - data/incoming
+    params:
+      - quality
+    metrics:
+      - reports/quality/quality_report.json:
+          cache: false
+    outs:
+      - reports/quality/reference.json
+  eda:
+    cmd: python src/eda/run_eda.py
+    deps:
+      - src/eda/run_eda.py
+      - data/interim/initial.csv
+    metrics:
+      - reports/eda_summary.json:
+          cache: false
+    plots:
+      - reports/figures:
+          cache: false

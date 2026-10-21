@@ -1,0 +1,12 @@
+split:
+  seed: 42
+  initial_share: 0.6
+  n_batches: 4
+  source: data/raw/customer_booking.csv
+  encoding: latin-1
+
+quality:
+  purchase_lead_max: 900
+  length_of_stay_flag: 365
+  new_route_share_max: 0.05
+  positive_share_tolerance: 0.33
