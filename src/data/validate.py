@@ -50,15 +50,21 @@ def check(df: pd.DataFrame, ref: dict, q: dict, lab: pd.DataFrame | None = None)
 
     dup = ok.duplicated(subset=FEATURES + (["booking_complete"] if "booking_complete" in ok else []))
     rep["duplicates_removed"] = int(dup.sum())
+    if dup.mean() > 0.01:
+        rep["warnings"].append("доля дубликатов выше 1 %")
     ok = ok[~dup]
 
     known = ok["route"].map(ref["route_duration"])
     rep["duration_mismatch"] = int(((known.notna()) & (known != ok["flight_duration"])).sum())
+    if rep["duration_mismatch"]:
+        rep["warnings"].append("длительность перелёта расходится со справочной")
     new_share = float((~ok["route"].isin(ref["routes"])).mean())
     rep["new_route_share"] = round(new_share, 4)
     if new_share > q["new_route_share_max"]:
         rep["warnings"].append("доля новых маршрутов выше порога")
     rep["not_set_origin"] = int((ok["booking_origin"] == "(not set)").sum())
+    if rep["not_set_origin"] > 0.01 * len(ok):
+        rep["warnings"].append("доля booking_origin = (not set) выше 1 %")
     rep["stay_over_365"] = int((ok["length_of_stay"] > q["length_of_stay_flag"]).sum())
     rep["stay_7_16"] = int(ok["length_of_stay"].between(7, 16).sum())
     if rep["stay_7_16"]:

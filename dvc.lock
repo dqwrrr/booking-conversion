@@ -47,8 +47,8 @@ stages:
       size: 2227
     - path: src/data/validate.py
       hash: md5
-      md5: 4aac5e573892b166d9df5114c5d65d87
-      size: 4718
+      md5: 4e220254de53f1d22d893e7f30f97859
+      size: 5107
     params:
       params.yaml:
         quality:
